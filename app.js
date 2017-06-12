@@ -7,8 +7,7 @@ var bodyParser = require('body-parser');
 
 var index = require('./routes/index');
 var about = require('./routes/about');
-console.log(about);
-console.log(index);
+var experiment = require('./routes/experiment');
 var app = express();
 
 // view engine setup
@@ -27,6 +26,7 @@ app.use(favicon(path.join(__dirname, 'public/images', 'BZ_logo_32.png'))); //TOD
 
 app.use('/', index);
 app.use('/about', about);
+app.use('/experiments', experiment);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

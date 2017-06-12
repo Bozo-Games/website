@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <title><%= title %></title>
+        <link rel='stylesheet' href='/stylesheets/style.css'/>
+    </head>
+    <body>
+        <% include templates/header.ejs %>
+        <h1><%= title %></h1>
+        <% experiments.forEach(function(item) { %>
+            <li>
+                <a href=<%="/experiments/"+item.name%>><%= item.name %></a> | <%= item.about %>
+            </li>
+        <% }) %>
+    </body>
+</html>

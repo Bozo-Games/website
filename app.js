@@ -22,6 +22,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(favicon(path.join(__dirname, 'public/images', 'BZ_logo_32.png'))); //TODO figure out y not work
+
 app.use('/', index);
 app.use('/users', users);
 

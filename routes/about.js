@@ -3,7 +3,8 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Bozo Games' });
+    console.log('here');
+    res.render('about', { title: 'About Bozo Games' });
 });
 
 module.exports = router;

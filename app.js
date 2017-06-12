@@ -6,8 +6,9 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 var index = require('./routes/index');
-var users = require('./routes/users');
-
+var about = require('./routes/about');
+console.log(about);
+console.log(index);
 var app = express();
 
 // view engine setup
@@ -25,10 +26,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(favicon(path.join(__dirname, 'public/images', 'BZ_logo_32.png'))); //TODO figure out y not work
 
 app.use('/', index);
-app.use('/users', users);
+app.use('/about', about);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
+  console.log(req.url);
   var err = new Error('Not Found');
   err.status = 404;
   next(err);

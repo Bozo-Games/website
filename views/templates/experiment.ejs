@@ -6,10 +6,12 @@
     <script src="../javascripts/p5/addons/p5.dom.js"></script>
     <script src="../javascripts/p5/addons/p5.sound.js"></script>
     <script src=<%= "../javascripts/experiments/"+name + "/sketch.js"%>></script>
+    <% extraScripts.forEach(function(item) { %>
+        <script scr=<%=item%>></script>
+    <% })%>
     <style> body {padding: 0; margin: 0;} </style>
 </head>
 
 <% include header.ejs %> </br>
-<p><%= extraScripts.length %></p>
 </body>
 </html>

@@ -7,10 +7,10 @@
     <body>
         <% include templates/header.ejs %>
         <h1><%= title %></h1>
-        <% experiments.forEach(function(item) { %>
+        <% for (var item in experiments) { %>
             <li>
-                <a href=<%="/experiments/"+item.name%>><%= item.name %></a> | <%= item.about %>
+                <a href=<%="/experiments/"+experiments[item].name%>><%= experiments[item].name %></a> | <%= experiments[item].about %>
             </li>
-        <% }) %>
+        <% } %>
     </body>
 </html>

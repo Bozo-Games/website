@@ -10,7 +10,7 @@ var experiments = {
             name: 'find-my-tv',
             about: 'How do we have a TV load our pages?',
             extraScripts: [
-                "http://www.gstatic.com/cast/sdk/libs/receiver/2.0.0/cast_receiver.js"
+                "http://www.gstatic.com/cast/sdk/libs/receiver/2.0.0/cast_receiver.js?loadGamesSDK"
             ]
         }
     };

@@ -11,7 +11,6 @@ var settings = {
 
     }
 };
-
 function setup() {
     //loadColors
     settings.color = {};
@@ -25,6 +24,13 @@ function windowResized() {
     resizeCanvas(windowWidth, windowHeight);
 }
 function draw() {
+    background(settings.color.black);
+}
 
-
+function keyReleased() {
+    if(keyCode == 32) {
+        document.createElement('button', 'google-cast-button');
+        print('here');
+    }
+    return false;
 }

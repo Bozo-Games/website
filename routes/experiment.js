@@ -4,13 +4,13 @@ var experiments = {
         snake: {
             name: 'snake',
             about: 'a remake of the classic snake.',
-            extraScripts: []
+            extraScripts: ["colors.js"]
         },
         "find-my-tv": {
             name: 'find-my-tv',
             about: 'How do we have a TV load our pages?',
             extraScripts: [
-                "http://www.gstatic.com/cast/sdk/libs/receiver/2.0.0/cast_receiver.js?loadGamesSDK"
+                "https://www.gstatic.com/cv/js/sender/v1/cast_sender.js?loadCastFramework=1"
             ]
         }
     };
@@ -24,7 +24,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/:name', function(req,res, next) {
-
+    console.log(experiments[req.params.name].extraScripts);
     res.render('templates/experiment', {
         name:req.params.name,
         extraScripts:experiments[req.params.name].extraScripts

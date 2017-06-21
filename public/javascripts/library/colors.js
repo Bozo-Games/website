@@ -8,7 +8,21 @@ settings["color"] = {
         }
     }
 };
+var defaultColorStrings = {
+    colorStrings: {
+        black: '#000000',
+        red:'#ff0000',
+        green: '#00ff00',
+        blue: '#0000ff',
+        yellow: '#ffff00',
+        cyan: '#00ffff',
+        purple: '#ff00ff',
+        white: '#ffffff',
+        lightGray: '#ababab',
+        gray: '#777777',
+        darkGray: '#333333'
+    }
+}
 
-//answer
-
-//https://stackoverflow.com/questions/6609238/is-there-a-way-to-add-css-js-later-using-ejs-with-nodejs-express
+settings = mergeSettings(settings,defaultColorStrings);
+var settings = (settings === undefined)?{}:settings;

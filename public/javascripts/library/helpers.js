@@ -13,6 +13,13 @@ function getRandomObject(json) {
     }
     return undefined;
 }
+function getRandomObjectKey(json) {
+    var keys = Object.keys(json);
+    if(keys.length > 0) {
+        return keys[getRandomInt(0,keys.length-1)];
+    }
+    return undefined;
+}
 function mergeSettings(base, ext) {
     var ret = {};
     for (var key in base) {

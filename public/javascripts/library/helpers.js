@@ -6,7 +6,13 @@
 function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
-
+function getRandomObject(json) {
+    var keys = Object.keys(json);
+    if(keys.length > 0) {
+        return json[keys[getRandomInt(0,keys.length-1)]];
+    }
+    return undefined;
+}
 function mergeSettings(base, ext) {
     var ret = {};
     for (var key in base) {

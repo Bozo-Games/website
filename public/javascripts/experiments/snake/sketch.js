@@ -20,7 +20,7 @@ var snakeSettings = {
     }
 };
 console.log(settings);
-settings = Object.assign(settings,snakeSettings);
+settings =  mergeSettings(settings,snakeSettings);
 console.log(settings);
 var up = {x: 0, y: -1};
 var down = {x: 0, y: 1};

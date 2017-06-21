@@ -4,7 +4,10 @@ var experiments = {
         snake: {
             name: 'snake',
             about: 'a remake of the classic snake.',
-            extraScripts: ["library/colors.js"]
+            extraScripts: [
+                "library/helpers.js",
+                "library/colors.js",
+            ]
         },
         "find-my-tv": {
             name: 'find-my-tv',
@@ -17,6 +20,9 @@ var experiments = {
         name: 'drawing-trade-maps',
             about: 'A test in making interesing informative dynamic maps about the Kingdom',
             extraScripts: [
+                "library/helpers.js",
+                "library/colors.js",
+                "experiments/drawing-trade-maps/models/area.js"
         ]
     }
     };

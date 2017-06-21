@@ -8,7 +8,6 @@ settings["color"] = {
         }
     }
 };
-console.log('here');
 
 //answer
 

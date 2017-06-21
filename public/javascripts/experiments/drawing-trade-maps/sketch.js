@@ -1,89 +1,27 @@
 console.log(settings);
 var settings = (settings === undefined)?{}:settings;
-var snakeSettings = {
-    gameSpeed:15,
-    square: {
-        w:15,
-        h:15
-    },
-    gridSize: {
-        w: 30,
-        h: 30
+var tradeSettings = {
+    canvasSize: {
+        w: 800,
+        h: 600,
     },
     colorStrings: {
-        head: '#00ffff',
-        body: '#00ff00',
-        apple: '#ff0000',
-        ground: '#000000',
-        text: '#ffffff'
+        black: '#000000'
     }
 };
-settings = Object.assign(settings,snakeSettings);
-var up = {x: 0, y: -1};
-var down = {x: 0, y: 1};
-var left = {x: -1, y: 0};
-var right = {x: 1, y: 0};
+settings = mergeSettings(settings,tradeSettings);
 
-var snake = {
-    vol: undefined,
-    head: undefined,
-    history: []
-};
-var apple = undefined;
 
 function setup() {
-    createCanvas(settings.square.w * settings.gridSize.w,settings.square.h * settings.gridSize.h);
-    /*settings.color = {};
-    for (var key in settings.colorStrings) {
-        settings.color[key] = color(settings.colorStrings[key]);
-    }*/
-    background(settings.color.ground);
+    settings.color.load();
+    createCanvas(settings.canvasSize.w,settings.canvasSize.h);
+
+    background(settings.color.black);
 }
 
 function draw() {
     clear();
-    background(settings.color.ground);
-    if(snake.head === undefined) {
-        fill(settings.color.text);
-        textAlign(CENTER);
-        rectMode(CENTER);
-        text("Game Over\nscore: " + snake.history.length, canvas.width / 2, canvas.height / 2,canvas.width,50);
-        text("(space bar for new game)", canvas.width / 2, canvas.height - 50,canvas.width,50);
-    } else {
-        if(frameCount % settings.gameSpeed == 0) {
-            moveSnake();
-            checkForApple();
-            checkForDeath();
-        }
-        if(snake.head) {
-            var animation = 0;// (frameCount % settings.gameSpeed) / settings.gameSpeed;
-            rectMode(CORNER);
-            //draw head
-            fill(settings.color.head);
-            rect(
-                (snake.head.x + snake.vol.x * animation) * settings.square.w,
-                (snake.head.y + snake.vol.y * animation) * settings.square.h,
-                settings.square.w, settings.square.h);
-
-            //draw body
-            fill(settings.color.body);
-            for (var i = snake.history.length - 1; i >= 0; i--) {
-                var loc = snake.history[i];
-                rect(
-                    loc.x * settings.square.w,
-                    loc.y * settings.square.h,
-                    settings.square.w, settings.square.h);
-
-            }
-            //draw apple
-
-            fill(settings.color.apple);
-            rect(
-                apple.x * settings.square.w,
-                apple.y * settings.square.h,
-                settings.square.w, settings.square.h);
-        }
-    }
+    background(settings.color.black);
 }
 
 function keyReleased() {
@@ -166,11 +104,4 @@ function setSnakeDir(dir) {
             snake.vol = dir;
         }
     }
-}
-/**
- * Returns a random integer between min (inclusive) and max (inclusive)
- * Using Math.round() will give you a non-uniform distribution!
- */
-function getRandomInt(min, max) {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
 }

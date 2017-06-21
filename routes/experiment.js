@@ -4,7 +4,7 @@ var experiments = {
         snake: {
             name: 'snake',
             about: 'a remake of the classic snake.',
-            extraScripts: ["colors.js"]
+            extraScripts: ["library/colors.js"]
         },
         "find-my-tv": {
             name: 'find-my-tv',

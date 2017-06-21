@@ -5,10 +5,9 @@
     <script src="../javascripts/p5/p5.js"></script>
     <script src="../javascripts/p5/addons/p5.dom.js"></script>
     <script src="../javascripts/p5/addons/p5.sound.js"></script>
-    <script src="../javascripts/library/colors.js"></script>
-    <% extraScripts.forEach(function(item) { %>
-    <script scr=<%= "../javascripts/library/" + item%>></script>
-    <% })%>
+    <% for(var i = 0; i < extraScripts.length; i++) { %>
+    <script src=<%= "../javascripts/" + extraScripts[i]%> ></script>
+    <% }%>
     <script src=<%= "../javascripts/experiments/"+name + "/sketch.js"%>></script>
     <style> body {padding: 0; margin: 0;} </style>
 </head>

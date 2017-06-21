@@ -12,7 +12,13 @@ var experiments = {
             extraScripts: [
                 "https://www.gstatic.com/cv/js/sender/v1/cast_sender.js?loadCastFramework=1"
             ]
-        }
+        },
+        "drawing-trade-maps": {
+        name: 'drawing-trade-maps',
+            about: 'A test in making interesing informative dynamic maps about the Kingdom',
+            extraScripts: [
+        ]
+    }
     };
 /* GET home page. */
 router.get('/', function(req, res, next) {

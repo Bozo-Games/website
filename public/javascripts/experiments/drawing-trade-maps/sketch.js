@@ -1,6 +1,5 @@
 console.log(settings);
 var settings = (settings === undefined)?{}:settings;
-console.log(settings);
 var snakeSettings = {
     gameSpeed:15,
     square: {
@@ -19,9 +18,7 @@ var snakeSettings = {
         text: '#ffffff'
     }
 };
-console.log(settings);
 settings = Object.assign(settings,snakeSettings);
-console.log(settings);
 var up = {x: 0, y: -1};
 var down = {x: 0, y: 1};
 var left = {x: -1, y: 0};
@@ -35,7 +32,6 @@ var snake = {
 var apple = undefined;
 
 function setup() {
-    settings.color.load();
     createCanvas(settings.square.w * settings.gridSize.w,settings.square.h * settings.gridSize.h);
     /*settings.color = {};
     for (var key in settings.colorStrings) {

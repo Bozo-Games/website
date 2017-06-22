@@ -1,6 +1,6 @@
 var mapSettings = {
     kingdomMap: {
-        defaultNumberOfAreas:4
+        defaultNumberOfAreas:6
     },
 };
 var settings = (settings === undefined)?{}:settings;

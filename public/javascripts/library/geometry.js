@@ -13,3 +13,22 @@ function doTheseLineSegmentsIntersect(p0_x, p0_y, p1_x, p1_y,p2_x, p2_y, p3_x, p
     }
     return false; // No collision
 }
+
+function getMXBForLine(x1,y1,x2,y2) {
+    var run = x2-x1;
+    var m = 0;
+    if(run !== 0) {
+        m = (y2-y1)/run;
+    }
+    var b = y1 - m*x1;
+    return {m:m,b:b};
+}
+
+function getMidPoint(x1,y1,x2,y2,p) {
+    var run = (x2-x1);
+    var x = x1 + run*p;
+    var rise = (y2-y1);
+
+    var y = y1 + p*rise;
+    return {x:x,y:y};
+}

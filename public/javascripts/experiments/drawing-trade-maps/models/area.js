@@ -16,8 +16,8 @@ var areaSettings = {
             var a = new Area(
                 {
                     center: {
-                        x: getRandomInt(1,settings.canvasSize.w) ,
-                        y:getRandomInt(1,settings.canvasSize.h)
+                        x:getRandomInt(1,settings.canvasSize.w/25)*25 ,
+                        y:getRandomInt(1,settings.canvasSize.h/25)*25
                     },
                     type: getRandomObject(settings.area.types),
                     name: settings.area.areaNames[getRandomInt(0,settings.area.areaNames.length-1)]

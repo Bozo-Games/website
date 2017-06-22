@@ -8,11 +8,16 @@ Road.prototype.loadJSON  = function(json) {
 };
 Road.prototype.buildJSON = function() {
     return {
-        center: this.center,
-        type:this.type,
-        size: this.size
+        org:this.org,
+        dest:this.dest,
     };
 };
-Road.prototype.draw = function () {
-
+Road.prototype.draw = function (kingdom) {
+    stroke(settings.color.lightGray);
+    line(
+        kingdom.areas[this.org].center.x,
+        kingdom.areas[this.org].center.y,
+        kingdom.areas[this.dest].center.x,
+        kingdom.areas[this.dest].center.y
+    );
 };

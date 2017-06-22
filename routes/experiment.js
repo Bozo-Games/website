@@ -22,7 +22,10 @@ var experiments = {
             extraScripts: [
                 "library/helpers.js",
                 "library/colors.js",
-                "experiments/drawing-trade-maps/models/area.js"
+                "library/geometry.js",
+                "experiments/drawing-trade-maps/models/area.js",
+                "experiments/drawing-trade-maps/models/road.js",
+                "experiments/drawing-trade-maps/models/kingdomMap.js"
         ]
     }
     };

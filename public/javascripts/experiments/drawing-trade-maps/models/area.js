@@ -11,7 +11,55 @@ var areaSettings = {
             small: 10,
             medium: 20,
             large: 30
-        }
+        },
+        randomArea: function () {
+            var a = new Area(
+                {
+                    center: {
+                        x: getRandomInt(1,settings.canvasSize.w) ,
+                        y:getRandomInt(1,settings.canvasSize.h)
+                    },
+                    type: getRandomObject(settings.area.types),
+                    name: settings.area.areaNames[getRandomInt(0,settings.area.areaNames.length-1)]
+                });
+            return a;
+        },
+        areaNames: [
+            'Cornwall',
+            'Hampshire',
+            'Kent',
+            'London',
+            'Oxfordshire',
+            'Essex',
+            'Gloucestersh',
+            'Marches',
+            'Glamorganshi',
+            'Gwynedd',
+            'Lincolnshire',
+            'Lancashire',
+            'Yorkshire',
+            'Northumberla',
+            'Cumbria',
+            'Lothian',
+            'Ayrshire',
+            'Fife',
+            'Aberdeenshir',
+            'Inverness',
+            'Western Isle',
+            'Orkney',
+            'Tyrone',
+            'Pale',
+            'Leinster',
+            'Limerick',
+            'Connaught',
+            'Norfolk',
+            'Derbyshi',
+            'Sutherla',
+            'Cork',
+            'Sligo',
+            'Kildare',
+            'Ulster'
+        ]
     },
     colorStrings: {
         lake: '#1045de',
@@ -32,14 +80,16 @@ function Area(json) {
 }
 Area.prototype.loadJSON  = function(json) {
     this.center = json.center;
-    this.type = json.type;
-    this.size = (json.size == undefined) ? getRandomObjectKey(settings.area.size) : json.size;
+    this.type = (json.type === undefined) ? getRandomObject(settings.area.types) : json.type;
+    this.size = (json.size === undefined) ? getRandomObjectKey(settings.area.size) : json.size;
+    this.name = (json.name === undefined) ? settings.area.areaNames[getRandomInt(0,settings.area.areaNames.length-1)] : json.name;
 };
 Area.prototype.buildJSON = function() {
     return {
         center: this.center,
         type:this.type,
-        size: this.size
+        size: this.size,
+        name: this.name,
     };
 };
 Area.prototype.draw = function () {
@@ -56,6 +106,6 @@ Area.prototype.draw = function () {
 };
 
 Area.prototype.debugText = function() {
-    var s = "Area ("+this.center.x+','+this.center.y+') \t- ' +this.size + " \t- "+this.type;
+    var s = this.name + "\t- ("+this.center.x+','+this.center.y+') \t- ' +this.size + " \t- "+this.type;
     return s;
 };

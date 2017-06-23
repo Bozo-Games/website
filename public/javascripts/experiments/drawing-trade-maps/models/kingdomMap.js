@@ -1,6 +1,6 @@
 var mapSettings = {
     kingdomMap: {
-        defaultNumberOfAreas:6
+        defaultNumberOfAreas:3
     },
 };
 var settings = (settings === undefined)?{}:settings;
@@ -11,7 +11,6 @@ function KingdomMap(json) {
     this.loadJSON(json);
 }
 KingdomMap.prototype.loadJSON  = function(json) {
-
     this.areas = [];
     if(json.areas) {
         for(var i = 0; i < json.areas.length; i++) {
@@ -42,6 +41,42 @@ KingdomMap.prototype.draw = function () {
     clear();
     push();
     background(settings.color.black);
+
+    loadPixels();
+    var d = pixelDensity();
+    var pixelLength = 4 * (width * d) * (height * d)
+    var x = 0;
+    var y = 0;
+    for (var i = 0; i < pixelLength; i+=4) {
+        var sum = {r:0,g:0,b:0};
+        var closest = pixelLength;
+        var closest_index = 0;
+        for(var a = 0; a < this.areas.length; a++) {
+            var area = this.areas[a];
+            var d = dist(x,y,area.center.x,area.center.y);
+            //d = settings.area.size[area.size] / d;
+            if (closest > d) {
+                closest_index = a;
+                closest = d;
+            }
+        }
+
+        sum.r =   red(settings.color[this.areas[closest_index].type])   ;//* (settings.area.size[area.size] / d) ;
+        sum.g = green(settings.color[this.areas[closest_index].type]) ;//* (settings.area.size[area.size] / d) ;
+        sum.b =  blue(settings.color[this.areas[closest_index].type])  ;//* (settings.area.size[area.size] / d) ;
+
+        pixels[i] = sum.r;
+        pixels[i+1] = sum.g;
+        pixels[i+2] = sum.b;
+        pixels[i+3] = 255;
+
+        x++;
+        if(x >= width) {
+            x = 0;
+            y++;
+        }
+    }
+    updatePixels();
     this.areas.forEach( function (item, index) {
         item.draw();
     });
@@ -49,6 +84,7 @@ KingdomMap.prototype.draw = function () {
         this.roads[i].draw(this);
     }
     pop();
+
 };
 
 KingdomMap.prototype.buildRoads = function() {

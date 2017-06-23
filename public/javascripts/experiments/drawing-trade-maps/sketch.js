@@ -1,10 +1,8 @@
 var settings = (settings === undefined)?{}:settings;
 var tradeSettings = {
     canvasSize: {
-        w: 800,
-        h: 600,
-    },
-    colorStrings: {
+        w: 400,
+        h: 300,
     },
     areaCount: 20,
 };
@@ -25,4 +23,5 @@ function draw() {
         fill(settings.color.white);
         text(debugArea.debugText(),0,20);
     }
+    noLoop();
 }

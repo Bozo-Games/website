@@ -1,6 +1,6 @@
 var mapSettings = {
     kingdomMap: {
-        defaultNumberOfAreas:3
+        defaultNumberOfAreas:12
     },
 };
 var settings = (settings === undefined)?{}:settings;
@@ -42,41 +42,6 @@ KingdomMap.prototype.draw = function () {
     push();
     background(settings.color.black);
 
-    loadPixels();
-    var d = pixelDensity();
-    var pixelLength = 4 * (width * d) * (height * d)
-    var x = 0;
-    var y = 0;
-    for (var i = 0; i < pixelLength; i+=4) {
-        var sum = {r:0,g:0,b:0};
-        var closest = pixelLength;
-        var closest_index = 0;
-        for(var a = 0; a < this.areas.length; a++) {
-            var area = this.areas[a];
-            var d = dist(x,y,area.center.x,area.center.y);
-            //d = settings.area.size[area.size] / d;
-            if (closest > d) {
-                closest_index = a;
-                closest = d;
-            }
-        }
-
-        sum.r =   red(settings.color[this.areas[closest_index].type])   ;//* (settings.area.size[area.size] / d) ;
-        sum.g = green(settings.color[this.areas[closest_index].type]) ;//* (settings.area.size[area.size] / d) ;
-        sum.b =  blue(settings.color[this.areas[closest_index].type])  ;//* (settings.area.size[area.size] / d) ;
-
-        pixels[i] = sum.r;
-        pixels[i+1] = sum.g;
-        pixels[i+2] = sum.b;
-        pixels[i+3] = 255;
-
-        x++;
-        if(x >= width) {
-            x = 0;
-            y++;
-        }
-    }
-    updatePixels();
     this.areas.forEach( function (item, index) {
         item.draw();
     });
@@ -86,6 +51,7 @@ KingdomMap.prototype.draw = function () {
     pop();
 
 };
+
 
 KingdomMap.prototype.buildRoads = function() {
     this.roads = [];
@@ -117,5 +83,52 @@ KingdomMap.prototype.buildRoads = function() {
                 this.roads.push(r);
             }
         }
+    }
+    this.removeCloseRoads();
+};
+
+KingdomMap.prototype.removeCloseRoads = function () {
+    var runAgain = false;
+    outer_loop:
+    for(var i = this.roads.length-1; i >=0 ;i--) {
+        var org = this.areas[this.roads[i].org];
+        var sameOrgRoads = [];
+        for(var j = 0; j < this.roads.length; j++) {
+            if(j !== i) {
+                if (this.roads[i].org === this.roads[j].org) {
+                    sameOrgRoads.push(j);
+                }
+            }
+        }
+        for(var k=0; k < sameOrgRoads.length; k++) {
+            print('looking at ' + sameOrgRoads[k]);
+            var a = find_angle(
+                this.areas[this.roads[i].dest].center,
+                this.areas[this.roads[sameOrgRoads[k]]].center,
+                this.areas[this.roads[i].org].center
+            ) * this.areas[this.roads[i].dest].center;
+            if (a < 10) {
+                runAgain = true;
+                var il = dist(
+                    org.center.x,
+                    org.center.y,
+                    this.areas[this.roads[i].dest].center.x,
+                    this.areas[this.roads[i].dest].center.y);
+                var kl = dist(
+                    org.center.x,
+                    org.center.y,
+                    this.areas[this.roads[k].dest].center.x,
+                    this.areas[this.roads[k].dest].center.y);
+                if (kl < il) {
+                    this.roads.splice(i,1);
+                } else {
+                    this.roads.splice(k,1);
+                }
+                break outer_loop;
+            }
+        }
+    }
+    if(runAgain) {
+        this.removeCloseRoads();
     }
 };

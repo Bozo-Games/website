@@ -23,9 +23,9 @@ var experiments = {
                 "library/helpers.js",
                 "library/colors.js",
                 "library/geometry.js",
-                "experiments/drawing-trade-maps/models/area.js",
+                "experiments/drawing-trade-maps/models/region.js",
                 "experiments/drawing-trade-maps/models/road.js",
-                "experiments/drawing-trade-maps/models/kingdomMap.js"
+                "experiments/drawing-trade-maps/models/land.js"
         ]
     }
     };

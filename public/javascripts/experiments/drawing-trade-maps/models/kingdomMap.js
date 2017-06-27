@@ -11,6 +11,7 @@ function KingdomMap(json) {
     this.loadJSON(json);
 }
 KingdomMap.prototype.loadJSON  = function(json) {
+    if (json === undefined) { json = {};}
     this.areas = [];
     if(json.areas) {
         for(var i = 0; i < json.areas.length; i++) {
@@ -60,7 +61,7 @@ KingdomMap.prototype.buildRoads = function() {
             var r = new Road({org:i,dest:j});
             var hasCollision = false;
             for(var k = 0; k < this.roads.length; k++) {
-                var col =doTheseLineSegmentsIntersect(
+                var col = doTheseLineSegmentsIntersect(
                         this.areas[r.org].center.x,
                         this.areas[r.org].center.y,
                         this.areas[r.dest].center.x,

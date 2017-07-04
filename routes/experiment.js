@@ -38,7 +38,6 @@ var experiments = {
     };
 /* GET home page. */
 router.get('/', function(req, res, next) {
-    console.log(experiments);
     res.render('experiments', {
         title: 'Some things to try',
         experiments:experiments
@@ -46,7 +45,6 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/:name', function(req,res, next) {
-    console.log(experiments[req.params.name].extraScripts);
     res.render('templates/experiment', {
         name:req.params.name,
         extraScripts:experiments[req.params.name].extraScripts,

@@ -1,4 +1,7 @@
 var settings = (settings === undefined)?{}:settings;
+settings.cast = {
+    isLoaded: false
+};
 function setup() {
     //loadColors
     settings.color.load();
@@ -20,15 +23,26 @@ function windowResized() {
 }
 function draw() {
     background(settings.color.black);
+    if(settings.cast.isLoaded) {
+        fill(settings.color.white);
+        rect(100, 100, 250, 60);
+        fill(settings.color.black);
+        text('Start', 110, 105, 230, 50);
+    }
 }
 
 function keyReleased() {
-    if(key == ' ') {
-        launchApp();
-    }
     return false;
 }
 
+function mouseReleased() {
+    if(settings.cast.isLoaded) {
+        if((mouseX > 100 && mouseX < 350) && mouseY > 100 && mouseY < 160) {
+            print('ok');
+            launchApp();
+        }
+    }
+}
 //------------------------ chrome cast stuff
 function initializeCastApi() {
     var applicationID = chrome.cast.media.DEFAULT_MEDIA_RECEIVER_APP_ID;
@@ -49,6 +63,7 @@ function sessionListener(e) {
 
 function receiverListener(e) {
     if( e === 'available' ) {
+        settings.cast.isLoaded = true;
         console.log("Chromecast was found on the network.");
     }
     else {

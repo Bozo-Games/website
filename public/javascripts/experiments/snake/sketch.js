@@ -19,9 +19,7 @@ var snakeSettings = {
         text: '#ffffff'
     }
 };
-console.log(settings);
 settings =  mergeSettings(settings,snakeSettings);
-console.log(settings);
 var up = {x: 0, y: -1};
 var down = {x: 0, y: 1};
 var left = {x: -1, y: 0};

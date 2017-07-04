@@ -13,8 +13,13 @@ var experiments = {
         "find-my-tv": {
             name: 'find-my-tv',
             about: 'How do we have a TV load our pages?',
-            extraScripts: [],
-            externalScripts: ["https://www.gstatic.com/cv/js/sender/v1/cast_sender.js?loadCastFramework=1"],
+            extraScripts: [
+                "library/helpers.js",
+                "library/colors.js"],
+            externalScripts: [
+                "https://www.gstatic.com/cv/js/sender/v1/cast_sender.js?loadCastFramework=1",
+                "http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"
+            ],
         },
         "drawing-trade-maps": {
         name: 'drawing-trade-maps',

@@ -2,6 +2,9 @@
 <html>
 <head>
     <title><%= name %></title>
+    <% for(var i = 0; i < externalScripts.length; i++) { %>
+    <script src=<%=  externalScripts[i]%> ></script>
+    <% }%>
     <script src="../javascripts/p5/p5.js"></script>
     <script src="../javascripts/p5/addons/p5.dom.js"></script>
     <script src="../javascripts/p5/addons/p5.sound.js"></script>

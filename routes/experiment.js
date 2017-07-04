@@ -7,14 +7,14 @@ var experiments = {
             extraScripts: [
                 "library/helpers.js",
                 "library/colors.js",
-            ]
+            ],
+            externalScripts: [],
         },
         "find-my-tv": {
             name: 'find-my-tv',
             about: 'How do we have a TV load our pages?',
-            extraScripts: [
-                "https://www.gstatic.com/cv/js/sender/v1/cast_sender.js?loadCastFramework=1"
-            ]
+            extraScripts: [],
+            externalScripts: ["https://www.gstatic.com/cv/js/sender/v1/cast_sender.js?loadCastFramework=1"],
         },
         "drawing-trade-maps": {
         name: 'drawing-trade-maps',
@@ -27,7 +27,8 @@ var experiments = {
                 "experiments/drawing-trade-maps/models/road.js",
                 "experiments/drawing-trade-maps/models/land.js",
                 "experiments/drawing-trade-maps/models/rhill-voronoi-core.js"
-        ]
+        ],
+            externalScripts: [],
     }
     };
 /* GET home page. */
@@ -43,7 +44,8 @@ router.get('/:name', function(req,res, next) {
     console.log(experiments[req.params.name].extraScripts);
     res.render('templates/experiment', {
         name:req.params.name,
-        extraScripts:experiments[req.params.name].extraScripts
+        extraScripts:experiments[req.params.name].extraScripts,
+        externalScripts:experiments[req.params.name].externalScripts
     })
 });
 

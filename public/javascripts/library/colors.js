@@ -22,7 +22,7 @@ var defaultColorStrings = {
         gray: '#777777',
         darkGray: '#333333'
     }
-}
+};
 
 settings = mergeSettings(settings,defaultColorStrings);
 var settings = (settings === undefined)?{}:settings;

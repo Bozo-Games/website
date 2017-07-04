@@ -25,7 +25,8 @@ var experiments = {
                 "library/geometry.js",
                 "experiments/drawing-trade-maps/models/region.js",
                 "experiments/drawing-trade-maps/models/road.js",
-                "experiments/drawing-trade-maps/models/land.js"
+                "experiments/drawing-trade-maps/models/land.js",
+                "experiments/drawing-trade-maps/models/rhill-voronoi-core.js"
         ]
     }
     };

@@ -4,6 +4,7 @@ function setup() {
     settings.color.load();
     createCanvas(windowWidth,windowHeight);
     background(settings.color.black);
+    settings.cast.appID = '3BA5849C';
     settings.cast.init();
 }
 function windowResized() {

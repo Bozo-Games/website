@@ -14,6 +14,7 @@ var castSettings = {
             if(settings.cast.appID !== undefined) {
                 applicationID = settings.cast.appID;
             }
+            print('appID ' + settings.cast.appID);
             var sessionRequest = new chrome.cast.SessionRequest(applicationID);
             var apiConfig = new chrome.cast.ApiConfig(sessionRequest,
                 settings.cast.sessionListener,
@@ -62,7 +63,7 @@ var castSettings = {
                 console.log("No session.");
                 return;
             }
-
+            /*
             var mediaInfo = new
             chrome.cast.media.MediaInfo('http://i.imgur.com/IFD14.jpg');
             mediaInfo.contentType = 'image/jpg';
@@ -70,7 +71,7 @@ var castSettings = {
             var request = new chrome.cast.media.LoadRequest(mediaInfo);
             request.autoplay = true;
 
-            settings.cast.session.loadMedia(request, settings.cast.onLoadSuccess,  settings.cast.onLoadError);
+            settings.cast.session.loadMedia(request, settings.cast.onLoadSuccess,  settings.cast.onLoadError);*/
         },
         onLoadSuccess:function() {
             console.log('Successfully loaded image.');

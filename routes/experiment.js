@@ -15,7 +15,8 @@ var experiments = {
             about: 'How do we have a TV load our pages?',
             extraScripts: [
                 "library/helpers.js",
-                "library/colors.js"],
+                "library/colors.js",
+                "library/cast-sender.js"],
             externalScripts: [
                 "https://www.gstatic.com/cv/js/sender/v1/cast_sender.js?loadCastFramework=1",
                 "https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"

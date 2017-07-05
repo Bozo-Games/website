@@ -1,6 +1,5 @@
-console.log(settings);
+
 var settings = (settings === undefined)?{}:settings;
-console.log(settings);
 var snakeSettings = {
     gameSpeed:15,
     square: {

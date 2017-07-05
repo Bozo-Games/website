@@ -3,7 +3,14 @@ var router = express.Router();
 var receivers = {
     "found-my-tv": {
         images: [],
-        audio: []
+        audio: [],
+        extraScripts: [
+            "library/helpers.js",
+            "library/colors.js",
+        ],
+        externalScripts: [
+            "https://www.gstatic.com/cast/sdk/libs/receiver/2.0.0/cast_receiver.js",
+        ],
     }
 };
 /* GET home page. */
@@ -16,7 +23,9 @@ router.get('/:name', function(req,res, next) {
         res.render('templates/cast-receiver', {
             name: req.params.name,
             images: receivers[req.params.name].images,
-            audio: receivers[req.params.name].audio
+            audio: receivers[req.params.name].audio,
+            extraScripts:receivers[req.params.name].extraScripts,
+            externalScripts:receivers[req.params.name].externalScripts
         })
     } else {
         res.render('index', { title: 'Bozo Games' });

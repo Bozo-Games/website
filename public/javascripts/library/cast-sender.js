@@ -7,6 +7,7 @@ var castSettings = {
             isAvailable: false,
             isConnected: false,
         },
+        namespace: 'testing dose this have to be a web address?',
         session: undefined,
         appID: undefined,
         init: function () {
@@ -26,6 +27,9 @@ var castSettings = {
             if (settings.cast.session.media.length != 0) {
                 console.log('Found ' + session.media.length + ' sessions.');
             }
+            print('New session ID:' + e.sessionId);
+            settings.cast.session.addUpdateListener(settings.cast.sessionUpdateListener);
+            settings.cast.session.addMessageListener(settings.cast.namespace, settings.cast.receiverMessage);
         },
         receiverListener: function(e) {
             if( e === 'available' ) {
@@ -87,6 +91,18 @@ var castSettings = {
         },
         onStopAppError: function() {
             console.log('Error stopping app.');
+        },
+        sessionUpdateListener: function (isAlive) {
+            var message = isAlive ? 'Session Updated' : 'Session Removed';
+            message += ': ' + settings.cast.session.sessionId;
+            print('message');
+            //appendMessage(message);
+            if (!isAlive) {
+                settings.cast.session = null;
+            }
+        },
+        receiverMessage: function (namespace, message) {
+            print('receiverMessage: ' + namespace + ', ' + message);
         }
     }
 };

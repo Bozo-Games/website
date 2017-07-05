@@ -7,6 +7,7 @@ var receivers = {
         extraScripts: [
             "library/helpers.js",
             "library/colors.js",
+            "library/cast-receiver.js"
         ],
         externalScripts: [
             "https://www.gstatic.com/cast/sdk/libs/receiver/2.0.0/cast_receiver.js",

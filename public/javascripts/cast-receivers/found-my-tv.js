@@ -61,7 +61,8 @@ function setup() {
     //loadColors
     settings.color.load();
     createCanvas(windowWidth,windowHeight);
-    settings.pixel.color = settings.color.getRandomColorByIndex();
+    var c = settings.color.getRandomColorByIndex();
+    settings.pixel.color = color('rgb('+c._getRed()+','+c._getGreen()+','+c._getBlue()+','+255+')');
     settings.pixel.position.x = 400;
     settings.pixel.position.x = 500;
     background(settings.color.black);
@@ -74,6 +75,12 @@ function draw() {
     settings.pixel.size.h = map(Math.sin(frameCount/100),-1,1,5,45);
     settings.pixel.size.w = map(Math.cos(frameCount/100),-1,1,5,45);
     settings.pixel.draw();
+    fill(settings.color.black);
+    rectMode(CORNER);
+    fill(settings.color.black);
+    rect(10,10,100,40);
+    fill(settings.color.green);
+    text(Math.round(frameRate(),2),12,12,96,36);
 }
 
 function keyReleased() {

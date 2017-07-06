@@ -6,6 +6,18 @@ settings["color"] = {
         for (var key in settings.colorStrings) {
             settings.color[key] = color(settings.colorStrings[key]);
         }
+    },
+    getRandomColorByIndex: function () {
+        var keys = Object.keys(settings.color);
+        for(var i = keys.length-1; i >= 0; i--) {
+            if(keys[i] === "isLoaded" || keys[i] === "load" || keys[i] === "getRandomColor") {
+                keys.splice(i,1);
+            }
+        }
+        if(keys.length > 0) {
+            return settings.color[keys[getRandomInt(0,keys.length-1)]];
+        }
+        return undefined;
     }
 };
 var defaultColorStrings = {

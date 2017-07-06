@@ -54,7 +54,8 @@ var castSettings = {
             console.log("Successfully created session: " + e.sessionId);
             settings.cast.session = e;
         },
-        onLaunchError: function() {
+        onLaunchError: function(e) {
+            print(e);
             console.log("Error connecting to the Chromecast.");
         },
         onRequestSessionSuccess:function(e) {

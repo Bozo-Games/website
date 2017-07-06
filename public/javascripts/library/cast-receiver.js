@@ -26,7 +26,8 @@ var receiverSettings = {
             settings.receiver.castReceiverManager.onSenderDisconnected = function(event) {
                 console.log('Received Sender Disconnected event: ' + event.data);
                 if (settings.receiver.castReceiverManager.getSenders().length == 0) {
-                    window.close();
+                    background(settings.color.black);
+                    //window.close();
                 }
             };
 

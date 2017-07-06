@@ -15,7 +15,7 @@ var castSettings = {
             if(settings.cast.appID !== undefined) {
                 applicationID = settings.cast.appID;
             }
-            print('appID ' + settings.cast.appID);
+            console.log('appID ' + settings.cast.appID);
             var sessionRequest = new chrome.cast.SessionRequest(applicationID);
             var apiConfig = new chrome.cast.ApiConfig(sessionRequest,
                 settings.cast.sessionListener,
@@ -27,7 +27,7 @@ var castSettings = {
             if (settings.cast.session.media.length != 0) {
                 console.log('Found ' + session.media.length + ' sessions.');
             }
-            print('New session ID:' + e.sessionId);
+            console.log('New session ID:' + e.sessionId);
             settings.cast.session.addUpdateListener(settings.cast.sessionUpdateListener);
             settings.cast.session.addMessageListener(settings.cast.namespace, settings.cast.receiverMessage);
         },
@@ -55,7 +55,7 @@ var castSettings = {
             settings.cast.session = e;
         },
         onLaunchError: function(e) {
-            print(e);
+            console.log(e);
             console.log("Error connecting to the Chromecast.");
         },
         onRequestSessionSuccess:function(e) {

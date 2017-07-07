@@ -47,7 +47,6 @@ var receiverSettings = {
                 // sender message listener will be invoked
                 settings.receiver.messageBus.send(event.senderId, event.data);
             };
-
             //finally start the reciver
             settings.receiver.castReceiverManager.start({statusText: 'Get Ready To BOZO'});
         }

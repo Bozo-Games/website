@@ -11,6 +11,7 @@ var receivers = {
         ],
         externalScripts: [
             "https://www.gstatic.com/cast/sdk/libs/receiver/2.0.0/cast_receiver.js",
+            "https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js",
         ],
     }
 };

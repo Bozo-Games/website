@@ -4,11 +4,13 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var socket = require('socket.io');
 
 var index = require('./routes/index');
 var about = require('./routes/about');
 var experiment = require('./routes/experiment');
 var receiver = require('./routes/cast-receiver');
+
 var app = express();
 
 // view engine setup
@@ -29,6 +31,7 @@ app.use('/', index);
 app.use('/about', about);
 app.use('/experiments', experiment);
 app.use('/receiver',receiver);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

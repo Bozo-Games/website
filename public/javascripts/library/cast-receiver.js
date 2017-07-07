@@ -42,7 +42,7 @@ var receiverSettings = {
             settings.receiver.messageBus.onMessage = function(event) {
                 console.log('Message [' + event.senderId + ']: ' + event.data);
                 // display the message from the sender
-                displayText(event.data);
+                //displayText(event.data);
                 // inform all senders on the CastMessageBus of the incoming message event
                 // sender message listener will be invoked
                 settings.receiver.messageBus.send(event.senderId, event.data);

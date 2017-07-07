@@ -52,46 +52,12 @@ var castSettings = {
         },
         onRequestSessionSuccess: function(e) {
             console.log("Successfully created session: " + e.sessionId);
+            settings.cast.isLoaded = true;
             settings.cast.session = e;
         },
         onLaunchError: function(e) {
             console.log(e);
             console.log("Error connecting to the Chromecast.");
-        },
-        onRequestSessionSuccess:function(e) {
-            console.log("Successfully created session: " + e.sessionId);
-            settings.cast.session = e;
-            settings.cast.loadMedia();
-        },
-        loadMedia: function() {
-            if (!settings.cast.session) {
-                console.log("No session.");
-                return;
-            }
-            /*
-            var mediaInfo = new
-            chrome.cast.media.MediaInfo('http://i.imgur.com/IFD14.jpg');
-            mediaInfo.contentType = 'image/jpg';
-
-            var request = new chrome.cast.media.LoadRequest(mediaInfo);
-            request.autoplay = true;
-
-            settings.cast.session.loadMedia(request, settings.cast.onLoadSuccess,  settings.cast.onLoadError);*/
-        },
-        onLoadSuccess:function() {
-            console.log('Successfully loaded image.');
-        },
-        onLoadError:function() {
-            console.log('Failed to load image.');
-        },
-        stopApp: function() {
-            settings.cast.session.stop(onStopAppSuccess, onStopAppError);
-        },
-        onStopAppSuccess: function() {
-            console.log('Successfully stopped app.');
-        },
-        onStopAppError: function() {
-            console.log('Error stopping app.');
         },
         sessionUpdateListener: function (isAlive) {
             var message = isAlive ? 'Session Updated' : 'Session Removed';

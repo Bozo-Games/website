@@ -62,6 +62,7 @@ function setup() {
     settings.color.load();
     createCanvas(windowWidth,windowHeight);
     var c = settings.color.getRandomColorByIndex();
+    console.log(c);
     settings.pixel.color = color('rgb('+c._getRed()+','+c._getGreen()+','+c._getBlue()+','+255+')');
     settings.pixel.position.x = 400;
     settings.pixel.position.x = 500;

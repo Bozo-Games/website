@@ -32,7 +32,7 @@ var receiverSettings = {
             };
 
             // handler for 'systemvolumechanged' event
-            castReceiverManager.onSystemVolumeChanged = function(event) {
+            settings.receiver.castReceiverManager.onSystemVolumeChanged = function(event) {
                 console.log('Received System Volume Changed event: ' + event.data['level'] + ' ' +
                     event.data['muted']);
             };

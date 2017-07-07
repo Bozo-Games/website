@@ -68,7 +68,7 @@ function setup() {
     settings.pixel.position.x = 500;
     background(settings.color.black);
 
-    //settings.receiver.init();
+    settings.receiver.init();
 }
 function windowResized() {
     resizeCanvas(windowWidth, windowHeight);

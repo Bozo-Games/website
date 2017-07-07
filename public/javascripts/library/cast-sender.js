@@ -17,16 +17,16 @@ var castSettings = {
             }
             console.log('appID ' + settings.cast.appID);
             var sessionRequest = new chrome.cast.SessionRequest(applicationID);
+
             var apiConfig = new chrome.cast.ApiConfig(sessionRequest,
                 settings.cast.sessionListener,
                 settings.cast.receiverListener);
+
+
             chrome.cast.initialize(apiConfig, settings.cast.onInitSuccess, settings.cast.onInitError);
         },
         sessionListener: function(e) {
             settings.cast.session = e;
-            if (settings.cast.session.media.length != 0) {
-                console.log('Found ' + session.media.length + ' sessions.');
-            }
             console.log('New session ID:' + e.sessionId);
             settings.cast.session.addUpdateListener(settings.cast.sessionUpdateListener);
             settings.cast.session.addMessageListener(settings.cast.namespace, settings.cast.receiverMessage);

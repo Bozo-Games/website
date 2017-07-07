@@ -24,6 +24,7 @@ var server = http.createServer(app);
  * add socket io
  * TODO: factor out into it's own filekl
  */
+var socket = require('socket.io');
 var io = socket(server);
 io.sockets.on('connection',function (socket) {
     console.log("New Socket connection: " + socket.id);

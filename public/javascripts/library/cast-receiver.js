@@ -4,7 +4,7 @@ console.log(settings);
 var receiverSettings = {
     receiver: {
         appID: undefined,
-        namespace: "testing bozo",
+        namespace: "urn:x-cast:testing-bozo",
         castReceiverManager: undefined,
         messageBus: undefined,
         init: function () {

@@ -37,6 +37,7 @@ var receiverSettings = {
                     event.data['muted']);
             };
             //Now set up msg bus
+            /*
             settings.receiver.messageBus = settings.receiver.castReceiverManager.getCastMessageBus(settings.receiver.namespace);
             // handler for the CastMessageBus message event
             settings.receiver.messageBus.onMessage = function(event) {
@@ -46,7 +47,7 @@ var receiverSettings = {
                 // inform all senders on the CastMessageBus of the incoming message event
                 // sender message listener will be invoked
                 settings.receiver.messageBus.send(event.senderId, event.data);
-            };
+            };*/
             //finally start the reciver
             settings.receiver.castReceiverManager.start({statusText: 'Get Ready To BOZO'});
         }

@@ -72,23 +72,22 @@ findSettings = {
 };
 settings = mergeSettings(settings,findSettings);
 
-var canvas,connectScreen,mainScreen,connectButton;
+var connectScreen,mainScreen,connectButton;
 function setup() {
     //loadColors
     settings.color.load();
-    canvas = createCanvas(windowWidth,windowHeight);
-    background(settings.color.black);
+    noCanvas();
+
     settings.cast.appID = '3BA5849C';
     settings.cast.init();
 
     connectScreen = createDiv('');
-    connectScreen.class('canvasCover');
+    connectScreen.class('connectScreen');
 
     connectButton = createButton('Start');
     connectButton.mouseReleased(connectToTVWithChromeCast);
 
     connectScreen.child(connectButton);
-    canvas.child(connectScreen);
 
 }
 function windowResized() {

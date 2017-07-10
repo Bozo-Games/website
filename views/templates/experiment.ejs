@@ -15,7 +15,7 @@
     <style> body {padding: 0; margin: 0;} </style>
 
     <% for(var i = 0; i < cssStyles.length; i++) { %>
-    <style src=<%= "../styrleSheets/" + cssStyles[i]%> ></style>
+    <link rel="stylesheet" href=<%= "../stylesheets/" + cssStyles[i]%> >
     <% }%>
 </head>
 <% include header.ejs %>

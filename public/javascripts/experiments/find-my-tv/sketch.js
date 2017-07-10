@@ -4,76 +4,17 @@ findSettings = {
     stateOptions: {
         new: "new",
         running: "running"
-    },
-    buttons: {
-        start: {
-            x: {p: 0.25,min: 0},
-            y: {p: 0.1,min: 20},
-            h: {p: 0.2,min:40},
-            w: {p: 0.5,min:100},
-            text: 'START',
-            color: 'white',
-            textColor: 'black',
-            mouseUp: function () {
-                if(settings.cast.isAvailable && !settings.cast.isLoaded) {
-                    var r = getBoundingBoxForBtnNamed("start");
-                    if((mouseX > r.x.min && mouseX < r.x.max) && mouseY > r.y.min && mouseY < r.y.max) {
-
-                        settings.cast.onRequestSessionSuccess = function (e) {
-                            console.log("Successfully created session: " + e.sessionId);
-                            settings.cast.session = e;
-                            settings.cast.isLoaded = true;
-                        };
-                        settings.cast.onLaunchError = function (e) {
-                            settings.cast.isLoaded = false;
-                            settings.buttons.start.color = 'red';
-                            settings.buttons.start.text = 'Try Again';
-                            settings.buttons.start.textColor = 'cyan';
-                        };
-                        document.getElementById('bozo_header').remove();
-                        fullscreen(true);
-                        settings.cast.launchApp();
-                    }
-                }
-            },
-            draw: function () {
-                if(settings.cast.isAvailable && !settings.cast.isLoaded) {
-                    drawBtn('start');
-                }
-            }
-        },
-
-        clear: {
-            x: {p: 0.1,min: 0},
-            y: {p: 0.1,min: 20},
-            h: {p: 0.05,min:40},
-            w: {p: 0.3, min:100},
-            text: 'Clear',
-            color: 'white',
-            textColor: 'black',
-            mouseUp: function () {
-                if(settings.cast.isAvailable && !settings.cast.isLoaded) {
-                    var r = getBoundingBoxForBtnNamed("start");
-                    if((mouseX > r.x.min && mouseX < r.x.max) && mouseY > r.y.min && mouseY < r.y.max) {
-                        //here is for socekts.io
-                    }
-                }
-            },
-            add: function () {
-                if(settings.cast.isAvailable && settings.cast.isLoaded) {
-                    drawBtn('clear');
-                }
-            },
-            remove: function() {
-
-            }
-        }
     }
 };
 settings = mergeSettings(settings,findSettings);
 
-var connectScreen,mainScreen,connectButton;
+var connectScreen,mainScreen,connectButton,clearBtn;
+
+var socket;
 function setup() {
+    //socket io
+    socket = io.connect('http://localhost:3030');
+
     //loadColors
     settings.color.load();
     noCanvas();
@@ -82,16 +23,31 @@ function setup() {
     settings.cast.init();
 
     connectScreen = createDiv('');
-    connectScreen.class('connectScreen');
+    connectScreen.class('bozoScreen');
 
     connectButton = createButton('Start');
+    connectButton.class('bozoButton');
     connectButton.mouseReleased(connectToTVWithChromeCast);
-
+    connectButton.touchEnded(connectToTVWithChromeCast);
     connectScreen.child(connectButton);
 
+    windowResized();
 }
 function windowResized() {
     resizeCanvas(windowWidth, windowHeight);
+
+    if(connectScreen !== undefined) {
+        connectButton.size(Math.max(100, windowWidth * 0.2), 40);
+        connectButton.position(windowWidth / 2, windowHeight / 2);
+
+        connectScreen.size(windowWidth, windowHeight);
+    } else if(mainScreen !== undefined) {
+
+        connectButton.size(Math.max(100, windowWidth * 0.2), 40);
+        connectButton.position(windowWidth/ 2, windowHeight/ 2);
+
+        mainScreen.size(windowWidth, windowHeight);
+    }
 }
 function draw() {
 }
@@ -103,12 +59,34 @@ function keyReleased() {
 function mouseReleased() {
 }
 
+function createMainScreen() {
+    if(mainScreen === undefined) {
+        mainScreen = createDiv('');
+
+        clearBtn = createButton('Clear');
+        clearBtn.class("bozoScreen")
+    }
+}
+function sendIAmController(receiverLabel) {
+    var data = {value:'find-my-tv',receiverLabel:receiverLabel};
+    socket.emit('IAm',data);
+}
+function sendClear() {
+
+}
+var debug;
 
 function connectToTVWithChromeCast() {
     settings.cast.onRequestSessionSuccess = function (e) {
+        debug = e;
         console.log("Successfully created session: " + e.sessionId);
         settings.cast.session = e;
         settings.cast.isLoaded = true;
+
+        connectScreen.remove();
+        connectScreen = undefined;
+        createMainScreen();
+        sendIAmController(e.receiver.label);
     };
     settings.cast.onLaunchError = function (e) {
         settings.cast.isLoaded = false;

@@ -57,7 +57,11 @@ var pixelSettings = {
 var SX,SY;
 settings = mergeSettings(settings,pixelSettings);
 
+var socket;
 function setup() {
+
+
+    socket = io.connect('https://bozo-test-server.herokuapp.com:3030');
     //loadColors
     settings.color.load();
     createCanvas(windowWidth,windowHeight);
@@ -69,8 +73,12 @@ function setup() {
     background(settings.color.black);
 
 
-
     settings.receiver.init();
+}
+
+function sendIAmTV(receiverLabel) {
+    var data = {value:'find-my-tv',receiverLabel:receiverLabel};
+    socket.emit('IAm',data);
 }
 function windowResized() {
     resizeCanvas(windowWidth, windowHeight);

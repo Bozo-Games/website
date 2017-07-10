@@ -6,7 +6,8 @@ var receiverSettings = {
         appID: undefined,
         namespace: "urn:x-cast:testing-bozo",
         castReceiverManager: undefined,
-        messageBus: undefined,
+        messageBus:undefined,
+        receiverLabel: undefined,
         init: function () {
             settings.receiver.castReceiverManager = cast.receiver.CastReceiverManager.getInstance();
 
@@ -26,8 +27,8 @@ var receiverSettings = {
             settings.receiver.castReceiverManager.onSenderDisconnected = function(event) {
                 console.log('Received Sender Disconnected event: ' + event.data);
                 if (settings.receiver.castReceiverManager.getSenders().length == 0) {
-                    background(settings.color.black);
-                    //window.close();
+                    //background(settings.color.black);
+                    window.close();
                 }
             };
 

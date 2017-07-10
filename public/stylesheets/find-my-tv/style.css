@@ -1,4 +1,10 @@
-.connectScreen {
-    background-color: red;
+.bozoScreen {
+    background-color: black;
+}
 
+.bozoButton {
+    background-color: white;
+    border-width: 2px;
+    border-color: slategray;
+    border-radius: 5%;
 }

@@ -9,6 +9,7 @@ var experiments = {
                 "library/colors.js",
             ],
             externalScripts: [],
+            cssStyles:[]
         },
         "find-my-tv": {
             name: 'find-my-tv',
@@ -19,8 +20,10 @@ var experiments = {
                 "library/cast-sender.js"],
             externalScripts: [
                 "https://www.gstatic.com/cv/js/sender/v1/cast_sender.js?loadCastFramework=1",
-                "https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"
+                "https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js",
+                "https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js",
             ],
+            cssStyles:["find-my-tv/style.css"]
         },
         "drawing-trade-maps": {
         name: 'drawing-trade-maps',
@@ -35,6 +38,7 @@ var experiments = {
                 "experiments/drawing-trade-maps/models/rhill-voronoi-core.js"
         ],
             externalScripts: [],
+            cssStyles:[]
     }
     };
 /* GET home page. */
@@ -49,7 +53,8 @@ router.get('/:name', function(req,res, next) {
     res.render('templates/experiment', {
         name:req.params.name,
         extraScripts:experiments[req.params.name].extraScripts,
-        externalScripts:experiments[req.params.name].externalScripts
+        externalScripts:experiments[req.params.name].externalScripts,
+        cssStyles:experiments[req.params.name].cssStyles,
     })
 });
 

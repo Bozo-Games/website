@@ -13,6 +13,10 @@
     <% }%>
     <script src=<%= "../javascripts/experiments/"+name + "/sketch.js"%>></script>
     <style> body {padding: 0; margin: 0;} </style>
+
+    <% for(var i = 0; i < cssStyles.length; i++) { %>
+    <style src=<%= "../styrleSheets/" + cssStyles[i]%> ></style>
+    <% }%>
 </head>
 <% include header.ejs %>
 </body>

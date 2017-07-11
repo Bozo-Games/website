@@ -13,7 +13,7 @@ var connectScreen,mainScreen,connectButton,clearBtn;
 var socket;
 function setup() {
     //socket io
-    socket = io.connect("https://" + window.location.hostname + ":3030", {secure: true});
+    socket = io("https://" + window.location.hostname + ":3030");
 
     //loadColors
     settings.color.load();
